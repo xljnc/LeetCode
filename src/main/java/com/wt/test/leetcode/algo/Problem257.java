@@ -1,9 +1,11 @@
-package com.wt.test.leetcode;
+package com.wt.test.leetcode.algo;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 257. 二叉树的所有路径
+ * https://leetcode-cn.com/problems/binary-tree-paths/
  * 深度优先,递归解决
  *
  * @author 一贫

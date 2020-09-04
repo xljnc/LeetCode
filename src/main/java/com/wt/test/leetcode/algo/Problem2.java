@@ -1,6 +1,9 @@
-package com.wt.test.leetcode;
+package com.wt.test.leetcode.algo;
 
 /**
+ * 2. 两数相加
+ * https://leetcode-cn.com/problems/add-two-numbers/
+ *
  * @author 一贫
  * @date 2020/9/3
  */

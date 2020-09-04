@@ -1,9 +1,12 @@
-package com.wt.test.leetcode;
+package com.wt.test.leetcode.algo;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 1. 两数之和
+ * https://leetcode-cn.com/problems/two-sum/
+ *
  * @author 一贫
  * @date 2020/9/3
  */
