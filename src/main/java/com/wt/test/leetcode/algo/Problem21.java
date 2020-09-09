@@ -26,16 +26,15 @@ public class Problem21 {
         ListNode result = new ListNode(0);
         ListNode curr = result;
         while (l1 != null && l2 != null) {
-            while (l1 != null && l2 != null && l1.val <= l2.val) {
+            if (l1.val <= l2.val) {
                 curr.next = l1;
-                curr = curr.next;
                 l1 = l1.next;
-            }
-            while (l1 != null && l2 != null && l2.val <= l1.val) {
+            } else {
                 curr.next = l2;
-                curr = curr.next;
                 l2 = l2.next;
             }
+            curr = curr.next;
+
         }
         if (l1 != null)
             curr.next = l1;
