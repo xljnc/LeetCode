@@ -15,7 +15,6 @@ public class Problem1117 {
     private Semaphore hydrogen = new Semaphore(2);
 
     private Semaphore oxygen = new Semaphore(0);
-    ;
 
     public Problem1117() {
     }
