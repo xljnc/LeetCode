@@ -1,5 +1,7 @@
 package com.wt.test.leetcode.concurrent;
 
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.IntConsumer;
 
 /**
@@ -16,6 +18,180 @@ public class Problem1195 {
     private volatile int curr = 1;
 
     public Problem1195(int n) {
+        this.n = n;
+    }
+
+    private ReentrantLock lock = new ReentrantLock();
+    private Condition fizzC = lock.newCondition();
+    private Condition buzzC = lock.newCondition();
+    private Condition fizzbuzzC = lock.newCondition();
+    private Condition numberC = lock.newCondition();
+
+    public static void main(String[] args) throws Exception {
+        Problem1195 problem1195 = new Problem1195(15);
+        new Thread(() -> {
+            try {
+                problem1195.fizz();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }, "fizz").start();
+
+        new Thread(() -> {
+            try {
+                problem1195.buzz();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }, "buzz").start();
+
+        new Thread(() -> {
+            try {
+                problem1195.fizzbuzz();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }, "fizzbuzz").start();
+
+        new Thread(() -> {
+            try {
+                problem1195.number();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }, "number").start();
+
+    }
+
+    // printFizz.run() outputs "fizz".
+    public void fizz() throws InterruptedException {
+        while (curr <= n) {
+            try {
+                lock.lock();
+                if (curr % 3 != 0 || curr % 5 == 0)
+                    fizzC.await();
+                if (curr > n) {
+                    buzzC.signal();
+                    fizzbuzzC.signal();
+                    numberC.signal();
+                    return;
+                }
+                System.out.println("fizz");
+                curr++;
+                call(curr);
+            } finally {
+                lock.unlock();
+            }
+        }
+    }
+
+    // printBuzz.run() outputs "buzz".
+    public void buzz() throws InterruptedException {
+        while (curr <= n) {
+            try {
+                lock.lock();
+                if (curr % 5 != 0 || curr % 3 == 0)
+                    buzzC.await();
+                if (curr > n) {
+                    fizzC.signal();
+                    fizzbuzzC.signal();
+                    numberC.signal();
+                    return;
+                }
+                System.out.println("buzz");
+                curr++;
+                call(curr);
+            } finally {
+                lock.unlock();
+            }
+        }
+    }
+
+    // printFizzBuzz.run() outputs "fizzbuzz".
+    public void fizzbuzz() throws InterruptedException {
+        while (curr <= n) {
+            try {
+                lock.lock();
+                if (curr % 15 != 0)
+                    fizzbuzzC.await();
+                if (curr > n) {
+                    fizzC.signal();
+                    buzzC.signal();
+                    numberC.signal();
+                    return;
+                }
+                System.out.println("fizzbuzz");
+                curr++;
+                call(curr);
+            } finally {
+                lock.unlock();
+            }
+        }
+    }
+
+    // printNumber.accept(x) outputs "x", where x is an integer.
+    public void number() throws InterruptedException {
+        while (curr <= n) {
+            try {
+                lock.lock();
+                if (curr > n) {
+                    fizzC.signal();
+                    buzzC.signal();
+                    fizzbuzzC.signal();
+                    return;
+                }
+                if (curr % 3 == 0 || curr % 5 == 0)
+                    numberC.await();
+                if (curr > n) {
+                    fizzC.signal();
+                    buzzC.signal();
+                    fizzbuzzC.signal();
+                    return;
+                }
+                System.out.println(curr);
+                curr++;
+                call(curr);
+            } finally {
+                lock.unlock();
+            }
+        }
+
+    }
+
+    private void callAll() {
+        fizzC.signalAll();
+        buzzC.signalAll();
+        fizzbuzzC.signalAll();
+        numberC.signalAll();
+    }
+
+    private void call(int curr) throws InterruptedException {
+        if (curr > n) {
+            fizzC.signalAll();
+            buzzC.signalAll();
+            fizzbuzzC.signalAll();
+            numberC.signalAll();
+        } else if (curr % 3 == 0 && curr % 5 != 0)
+            fizzC.signal();
+        else if (curr % 5 == 0 && curr % 3 != 0)
+            buzzC.signal();
+        else if (curr % 15 == 0)
+            fizzbuzzC.signal();
+        else
+            numberC.signal();
+    }
+
+
+}
+
+
+class Resolution1 {
+
+    private int n;
+
+    private volatile int curr = 1;
+
+    public Resolution1(int n) {
         this.n = n;
     }
 

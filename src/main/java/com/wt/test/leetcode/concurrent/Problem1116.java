@@ -17,7 +17,7 @@ public class Problem1116 {
     private Semaphore odd = new Semaphore(0);
     private Semaphore even = new Semaphore(0);
 
-    public ZeroEvenOdd(int n) {
+    public Problem1116(int n) {
         this.n = n;
     }
 
