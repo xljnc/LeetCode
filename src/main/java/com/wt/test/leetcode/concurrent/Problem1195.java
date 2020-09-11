@@ -7,6 +7,12 @@ import java.util.function.IntConsumer;
 /**
  * 1195. 交替打印字符串
  * https://leetcode-cn.com/problems/fizz-buzz-multithreaded/
+ * <p>
+ * 使用Lock配合4个Condition来唤醒对应的打印线程。
+ * curr表示当前值，从1开始。
+ * 线程循环开始后，需要判断是否符合执行条件。如果否，则等待。
+ * 如果是，则打印，然后curr++，然后唤醒对应符合条件的线程，如果curr>n,则唤醒所有线程，避免无限等待。
+ * 线程被唤醒，先要判断curr>n,如果是，唤醒其他线程， 自身退出。
  *
  * @author 一贫
  * @date 2020/9/10
@@ -134,12 +140,6 @@ public class Problem1195 {
         while (curr <= n) {
             try {
                 lock.lock();
-                if (curr > n) {
-                    fizzC.signal();
-                    buzzC.signal();
-                    fizzbuzzC.signal();
-                    return;
-                }
                 if (curr % 3 == 0 || curr % 5 == 0)
                     numberC.await();
                 if (curr > n) {
