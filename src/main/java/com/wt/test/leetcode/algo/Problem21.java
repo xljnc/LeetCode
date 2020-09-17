@@ -43,7 +43,7 @@ public class Problem21 {
         return result.next;
     }
 
-    static class ListNode {
+    private static class ListNode {
         int val;
         ListNode next;
 

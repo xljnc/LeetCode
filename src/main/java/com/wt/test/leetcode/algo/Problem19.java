@@ -84,7 +84,7 @@ public class Problem19 {
         return n > 1;
     }
 
-    static class ListNode {
+    private static class ListNode {
         int val;
         ListNode next;
 
