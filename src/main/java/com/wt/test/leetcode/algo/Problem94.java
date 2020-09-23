@@ -32,7 +32,7 @@ public class Problem94 {
 
     }
 
-    static class TreeNode {
+    private static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;

@@ -25,12 +25,12 @@ public class Problem257 {
 
     public static List<String> binaryTreePaths(TreeNode root) {
         List<String> result = new ArrayList<>();
-         travel(root, "", result);
+        travel(root, "", result);
         return result;
     }
 
     public static void travel(TreeNode node, String curr, List<String> result) {
-        if(node == null)
+        if (node == null)
             return;
         curr = curr + "->" + node.val;
         if (isLeaf(node)) {
@@ -47,7 +47,7 @@ public class Problem257 {
         return node.left == null && node.right == null;
     }
 
-    static class TreeNode {
+    private static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
