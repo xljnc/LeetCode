@@ -1,4 +1,4 @@
-package com.wt.test.leetcode.cxymsjd;
+package com.wt.test.leetcode.lcci;
 
 /**
  * 面试题 01.03. URL化
