@@ -12,8 +12,24 @@ public class TreeUtils {
     public static void main(String[] args) {
         Integer[] input = {5, 4, 7, 3, null, 2, null, -1, null, 9};
         TreeNode result = arrayLevelToTree(input);
-        System.out.println(result);
+        List<Integer> travel = inOrderTraverse(result);
+        System.out.println(travel);
     }
+
+    public static List<Integer> inOrderTraverse(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        inTraverse(root, result);
+        return result;
+    }
+
+    public static void inTraverse(TreeNode root, List<Integer> result) {
+        if (root == null)
+            return;
+        inTraverse(root.left, result);
+        result.add(root.val);
+        inTraverse(root.right, result);
+    }
+
 
     public static TreeNode arrayLevelToTree(Integer[] input) {
         if (input == null || input.length == 0)
