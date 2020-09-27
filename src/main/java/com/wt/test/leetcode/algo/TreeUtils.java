@@ -43,6 +43,8 @@ public class TreeUtils {
             for (TreeNode node : row) {
                 if (node == null)
                     continue;
+                if (index == input.length)
+                    break;
                 Integer currVal = input[index++];
                 node.left = currVal == null ? null : new TreeNode(currVal);
                 currRow.add(node.left);
