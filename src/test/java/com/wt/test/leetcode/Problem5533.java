@@ -9,7 +9,7 @@ public class Problem5533 {
 
     public static void main(String[] args) {
         Problem5533 problem5533 = new Problem5533();
-        int result = problem5533.minimumOneBitOperations(6);
+        int result = problem5533.minimumOneBitOperations(9);
         System.out.println(result);
     }
 
