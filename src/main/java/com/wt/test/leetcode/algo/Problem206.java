@@ -7,7 +7,7 @@ package com.wt.test.leetcode.algo;
  * @author 一贫
  * @date 2020/10/20
  */
-public class Problme206 {
+public class Problem206 {
 
     public ListNode reverseList(ListNode head) {
         if (head == null)
