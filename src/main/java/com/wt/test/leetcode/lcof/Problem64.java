@@ -9,6 +9,9 @@ package com.wt.test.leetcode.lcof;
  */
 public class Problem64 {
 
+    /**
+     * 递归
+     */
     public int sumNums(int n) {
         if (n == 1)
             return 1;
