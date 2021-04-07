@@ -16,17 +16,17 @@ public class Problem88 {
         int[] nums2 = {2, 5, 6};
         int n = 3;
         problem88.merge(nums1, m, nums2, n);
-        System.out.println(nums1);
+        System.out.println(ArrayUtils.arrayToString(nums1));
     }
 
     public void merge(int[] nums1, int m, int[] nums2, int n) {
-        if (m == 0)
-            nums1 = nums2;
-        else if (m != 0 && n != 0) {
+        if (m == 0) {
+            System.arraycopy(nums2, 0, nums1, 0, m + n);
+        } else if (m != 0 && n != 0) {
             int[] result = new int[m + n];
             int i1 = 0, i2 = 0, i3 = 0;
             while (i1 < m && i2 < n) {
-                if (nums1[i1] > nums2[i2]) {
+                if (nums1[i1] < nums2[i2]) {
                     result[i3++] = nums1[i1++];
                 } else {
                     result[i3++] = nums2[i2++];
@@ -41,7 +41,7 @@ public class Problem88 {
                     result[i3++] = nums1[i1];
                 }
             }
-            nums1 = result;
+            System.arraycopy(result, 0, nums1, 0, m + n);
         }
 
     }
