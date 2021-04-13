@@ -10,7 +10,7 @@ package com.wt.test.leetcode.algo;
 public class Problem783 {
     private int min = Integer.MAX_VALUE;
 
-    private int previous = Integer.MAX_VALUE;
+    private int previous = Integer.MIN_VALUE;
 
     public int minDiffInBST(TreeNode root) {
         traverse(root);
@@ -21,8 +21,10 @@ public class Problem783 {
         if (root == null)
             return;
         traverse(root.left);
-        int diff = Math.abs(root.val - previous);
-        min = Math.min(min, diff);
+        if (previous != Integer.MIN_VALUE) {
+            int diff = Math.abs(root.val - previous);
+            min = Math.min(min, diff);
+        }
         previous = root.val;
         traverse(root.right);
     }
