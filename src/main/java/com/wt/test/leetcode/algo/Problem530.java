@@ -11,7 +11,7 @@ public class Problem530 {
 
     private int min = Integer.MAX_VALUE;
 
-    private int previous = Integer.MAX_VALUE;
+    private int previous = Integer.MIN_VALUE;
 
     public static void main(String[] args) {
         Problem530 problem530 = new Problem530();
@@ -30,8 +30,10 @@ public class Problem530 {
         if (root == null)
             return;
         traverse(root.left);
-        int diff = Math.abs(root.val - previous);
-        min = Math.min(min, diff);
+        if (previous != Integer.MIN_VALUE) {
+            int diff = Math.abs(root.val - previous);
+            min = Math.min(min, diff);
+        }
         previous = root.val;
         traverse(root.right);
     }
