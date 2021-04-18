@@ -13,7 +13,7 @@ public class Problem26 {
 
     }
 
-    public static int removeDuplicates(int[] nums) {
+    public int removeDuplicates(int[] nums) {
         int index = 0;
         for (int i = 1; i < nums.length; i++) {
             if (nums[i] == nums[index])
