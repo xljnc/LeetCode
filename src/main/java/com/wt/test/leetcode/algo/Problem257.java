@@ -47,15 +47,6 @@ public class Problem257 {
         return node.left == null && node.right == null;
     }
 
-    private static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-    }
 }
 
 
