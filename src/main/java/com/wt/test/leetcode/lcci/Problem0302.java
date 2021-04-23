@@ -17,7 +17,7 @@ public class Problem0302 {
     }
 
 
-    static class MinStack {
+    class MinStack {
 
         /**
          * initialize your data structure here.
@@ -55,7 +55,7 @@ public class Problem0302 {
 
         Node head = null;
 
-        static class Node {
+        class Node {
             int val;
             Node next;
             int min;
