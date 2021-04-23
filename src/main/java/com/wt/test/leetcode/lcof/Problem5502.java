@@ -9,7 +9,7 @@ import com.wt.test.leetcode.algo.TreeNode;
  * @author 一贫
  * @date 2021/4/23
  */
-public class Problem55 {
+public class Problem5502 {
 
     public boolean isBalanced(TreeNode root) {
         if (root == null)

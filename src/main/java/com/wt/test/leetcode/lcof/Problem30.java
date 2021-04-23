@@ -9,7 +9,7 @@ package com.wt.test.leetcode.lcof;
  */
 public class Problem30 {
 
-    static class MinStack {
+    class MinStack {
 
         /**
          * initialize your data structure here.
@@ -47,7 +47,7 @@ public class Problem30 {
 
         Node head = null;
 
-        static class Node {
+        class Node {
             int val;
             Node next;
             int min;
