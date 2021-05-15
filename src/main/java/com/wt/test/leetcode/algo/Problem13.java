@@ -12,11 +12,12 @@ import java.util.Map;
  */
 public class Problem13 {
     public static void main(String[] args) {
-        int result = romanToInt("MCMXCIV");
+        Problem13 problem13 = new Problem13();
+        int result = problem13.romanToInt("MCMXCIV");
         System.out.println(result);
     }
 
-    public static int romanToInt(String s) {
+    public int romanToInt(String s) {
         if (s == null || s.length() < 1)
             return 0;
         Map<Character, Integer> refer = new HashMap<>(16);
@@ -37,7 +38,7 @@ public class Problem13 {
         return sum;
     }
 
-    public static boolean minus(char left, char right) {
+    public boolean minus(char left, char right) {
         return (left == 'I' && (right == 'V' || right == 'X')) ||
                 (left == 'X' && (right == 'L' || right == 'C')) ||
                 (left == 'C' && (right == 'D' || right == 'M'));
