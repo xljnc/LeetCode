@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class Problem509 {
 
-    private static final Map<Integer, Integer> memo = new HashMap<Integer, Integer>(64);
+    private static final Map<Integer, Integer> memo = new HashMap<>(64);
 
     public int fib(int n) {
         if (memo.containsKey(n))
