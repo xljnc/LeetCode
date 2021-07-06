@@ -23,7 +23,7 @@ public class Problem977 {
             }
         } else {
             int positive = -1;
-            for (int i = 1; i < A.length; i++) {
+            for (int i = 0; i < A.length; i++) {
                 if (A[i] >= 0) {
                     positive = i;
                     break;
