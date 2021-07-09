@@ -18,7 +18,7 @@ public class Problem19 {
         head.next.next.next = new ListNode(4);
         head.next.next.next.next = new ListNode(5);
 //        ListNode result = removeNthFromEnd1(head, 2);
-        ListNode result = removeNthFromEnd2(head, 2);
+        ListNode result = removeNthFromEnd(head, 2);
         System.out.println(result);
     }
 
@@ -26,25 +26,22 @@ public class Problem19 {
      * 双指针法，让快慢2个指针都指向head的前一个。
      * 快指针先走n步，然后快慢指针一起走，快指针到底，慢指针指向应被删除节点的前一个。
      */
-    public static ListNode removeNthFromEnd2(ListNode head, int n) {
-        ListNode fast = new ListNode(0);
-        fast.next = head;
-        ListNode slow = new ListNode(0);
-        slow.next = head;
-        for (int i = 0; i < n; i++) {
+    public static ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode dummy = new ListNode(0, head);
+        ListNode slow = dummy;
+        ListNode fast = head;
+        while (n != 0) {
             fast = fast.next;
+            n--;
         }
-        while (fast.next != null) {
+        while (fast != null) {
             fast = fast.next;
             slow = slow.next;
         }
-        if (slow.next == head)
-            return head.next;
-        else {
-            slow.next = slow.next.next;
-            return head;
-        }
+        slow.next = slow.next.next;
+        return dummy.next;
     }
+
 
     /**
      * 遍历链表，使用List保存节点
@@ -82,14 +79,5 @@ public class Problem19 {
 
     public static boolean hashNext(List<ListNode> nodes, int n) {
         return n > 1;
-    }
-
-    private static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
     }
 }
