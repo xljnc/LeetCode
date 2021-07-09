@@ -1,5 +1,8 @@
 package com.wt.test.leetcode.algo;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * 36. 有效的数独
  * https://leetcode-cn.com/problems/valid-sudoku/
@@ -19,6 +22,36 @@ public class Problem36 {
     }
 
     public boolean isValidSudoku(char[][] board) {
+        Set<Integer>[] rows = new HashSet[9];
+        Set<Integer>[] cols = new HashSet[9];
+        Set<Integer>[] boxes = new HashSet[9];
+        for (int i = 0; i < 9; i++) {
+            rows[i] = new HashSet<>(16);
+            cols[i] = new HashSet<>(16);
+            boxes[i] = new HashSet<>(16);
+        }
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                char c = board[i][j];
+                if (c != '.') {
+                    int n = (int) c;
+                    if (rows[i].contains(n))
+                        return false;
+                    rows[i].add(n);
+                    if (cols[j].contains(n))
+                        return false;
+                    cols[j].add(n);
+                    int index = i / 3 * 3 + j / 3;
+                    if (boxes[index].contains(n))
+                        return false;
+                    boxes[index].add(n);
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean isValidSudoku2(char[][] board) {
         int[][] row = new int[9][9];
         int[][] col = new int[9][9];
         int[][] box = new int[9][9];
