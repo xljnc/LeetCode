@@ -10,6 +10,16 @@ package com.wt.test.leetcode.algo;
 public class Problem876 {
 
     public ListNode middleNode(ListNode head) {
+        ListNode fast = head, slow = head;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        return slow;
+    }
+
+
+    public ListNode middleNode1(ListNode head) {
         if (head == null || head.next == null)
             return head;
         int count = 1;
