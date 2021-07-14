@@ -11,9 +11,6 @@ import java.util.List;
  * @date 2020/9/14
  */
 public class Problem94 {
-    public static void main(String[] args) {
-
-    }
 
     public static List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> result = new ArrayList<>();
@@ -30,15 +27,5 @@ public class Problem94 {
         if (root.right != null)
             traverse(root.right, result);
 
-    }
-
-    private static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }
