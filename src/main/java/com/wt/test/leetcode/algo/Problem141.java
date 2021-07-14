@@ -25,6 +25,26 @@ public class Problem141 {
     /**
      * 快慢指针
      */
+    public boolean hasCycle(ListNode head) {
+        if (head == null || head.next == null)
+            return false;
+        ListNode slow = head;
+        ListNode fast = head.next;
+        while (fast != slow) {
+            if (fast == null || fast.next == null)
+                return false;
+            fast = fast.next;
+            if (fast == slow)
+                return true;
+            fast = fast.next;
+            slow = slow.next;
+        }
+        return true;
+    }
+
+    /**
+     * 快慢指针
+     */
     public boolean hasCycle4(ListNode head) {
         if (head == null || head.next == null)
             return false;
