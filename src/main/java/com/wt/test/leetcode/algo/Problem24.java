@@ -39,12 +39,4 @@ public class Problem24 {
         return result;
     }
 
-    private static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
 }
